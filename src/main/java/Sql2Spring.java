@@ -15,6 +15,9 @@ public class Sql2Spring {
     private String javaContent;
     private String mapperContent;
     private String daoContent;
+    /*
+      @param sql  create table sql from sequel
+     */
     public Sql2Spring(String sql ,List<String> sqls,List<String> sqlsId){
         try {
             TableEntity tableEntity = SqlSolver.solveTableEntity(sql);
