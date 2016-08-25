@@ -1,3 +1,4 @@
+import dao.DaoClass;
 import dao.DaoGenerator;
 import ibaties.IbatisModel;
 import sql.SqlContent;
@@ -15,9 +16,6 @@ public class Sql2Spring {
     private String javaContent;
     private String mapperContent;
     private String daoContent;
-    /*
-      @param sql  create table sql from sequel
-     */
     public Sql2Spring(String sql ,List<String> sqls,List<String> sqlsId){
         try {
             TableEntity tableEntity = SqlSolver.solveTableEntity(sql);
@@ -28,7 +26,8 @@ public class Sql2Spring {
             DaoGenerator generator = new DaoGenerator();
             mapperContent = model.build(sqlContents);
             javaContent = javaEntity.getJavaContent();
-            daoContent =  generator.generator(sqlContents, javaEntity, tableEntity);
+            DaoClass daoClass =  generator.generator(sqlContents, javaEntity, tableEntity);
+
            System.out.println(mapperContent);
 
         }catch (Exception e ){

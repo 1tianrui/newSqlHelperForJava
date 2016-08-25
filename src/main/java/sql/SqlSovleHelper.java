@@ -110,6 +110,9 @@ public class SqlSovleHelper {
         if(content == null || content.trim().length()==0){
             return false;
         }
+        if(content.contains(" key ") || content.contains(" KEY ")){
+            return false ;
+        }
         if((content.contains("text")||content.contains("decimal")||content.contains("int(") || content.contains("datetime")
                 ||content.contains("char"))){
             return true;

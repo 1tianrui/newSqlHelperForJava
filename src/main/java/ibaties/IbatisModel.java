@@ -50,7 +50,7 @@ public class IbatisModel {
                 "<!DOCTYPE sqlMap PUBLIC \"-//ibatis.apache.org//DTD SQL Map 2.0//EN\" \"http://ibatis.apache.org/dtd/sql-map-2.dtd\">\n" +
                 "<sqlMap namespace=\""+javaEntity.getClassName()+"\">\r\n");
         headBuilder.append(" <typeAlias alias=\""+javaEntity.getClassName()+"PO\"" +
-                "               type=\"the full path of your bean\" />\n");
+                "               type=\"类的全部路径\" />\n");
         headBuilder.append("<resultMap id=\""+resultMap+"\"  class=\""+paramClass+"\">\r\n");
         for( int i= 0 ;i<javaEntity.getColumns().size();i++){
             headBuilder.append("<result column=\""+tableEntity.getColumns().get(i).getName()+"\" property=\""+javaEntity.getColumns().get(i).getName()+"\" />\r\n");
@@ -63,6 +63,7 @@ public class IbatisModel {
         return "</sqlMap>";
     }
     private String buildUpdate(SqlContent sqlContent){
+        sqlContent.setIsNullJudge(true);
         if(sqlContent.getSetList().size()>4){
             sqlContent.setIsNullJudge(true);
         }
@@ -124,7 +125,7 @@ public class IbatisModel {
 
     private String  buildSelect(SqlContent content){
         StringBuilder builder = new StringBuilder(1024);
-        builder.append("\r\n<select id=\""+content.getId()+"\" parameterClass=\"map\" resultMap=\"" + resultMap + "\"\r\n");
+        builder.append("\r\n<select id=\""+content.getId()+"\" parameterClass=\"map\" resultMap=\"" + resultMap + "\">\r\n");
         builder.append("SELECT * from "+tableEntity.getTableName()+"\r\n");
         builder.append(createWhere(content.getWhereCondition())+"\r\n");
         builder.append("</select>");

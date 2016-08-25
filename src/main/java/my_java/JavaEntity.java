@@ -66,10 +66,11 @@ public class JavaEntity {
         }
         for(JavaColumn column : columns){
             builder.append("public void set"+StringHelper.convertToTuofeng(column.getName(),true)+"("+column.getType().getName()+" "+column.getName()+")\r\n");
-            builder.append("this."+column.getName()+" = "+column.getName()+";\r\n  }\r\n");
+            builder.append("{\r\nthis."+column.getName()+" = "+column.getName()+";\r\n  }\r\n");
             builder.append("public "+column.getType().getName()+"  get"+StringHelper.convertToTuofeng(column.getName(),true)+"(){\r\n");
             builder.append("return this."+column.getName()+" ;\r\n  }\r\n");
         }
+        builder.append("\r\n}");
         return builder.toString();
     }
 }
