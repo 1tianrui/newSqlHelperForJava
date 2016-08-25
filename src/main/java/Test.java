@@ -15,6 +15,7 @@ public class Test {
         ids.add("update");
 
         //当参数列表太过复杂时，daoMethod.generateMapClass()可以帮你生成参数类
+        //这里的create table语句建议从sequel 工具中拷出来，
         Sql2Spring test = new Sql2Spring("CREATE TABLE `YS_FIN_NewMonthlyBill` (\n" +
                 "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
                 "  `shop_id` int(11) DEFAULT NULL COMMENT '商户编号',\n" +
