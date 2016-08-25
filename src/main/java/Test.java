@@ -9,9 +9,12 @@ public class Test {
     public static void main(String args[]){
         List<String> sqlContents = new ArrayList<String>();
         //sql 两边多留点空格 符号两边也要有空格
-        sqlContents.add(" select * from YS_FIN_NewMonthlyBill where shop_id =  and  bill_year =  ");
+        sqlContents.add(" update  YS_FIN_NewMonthlyBill set discount = , origin_paid =  , actual_paid = , discount_amount = , updatetime = , updated_by = , status = , record_total_cnt = , record_needpaid_cnt = , record_onlinepay_cnt =  where shop_id = and bill_month = and bill_year =  ");
         List<String> ids = new ArrayList<String>();
-        ids.add("queryByShopAndYear");
+        //对应每个sql的id
+        ids.add("update");
+
+        //当参数列表太过复杂时，daoMethod.generateMapClass()可以帮你生成参数类
         Sql2Spring test = new Sql2Spring("CREATE TABLE `YS_FIN_NewMonthlyBill` (\n" +
                 "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
                 "  `shop_id` int(11) DEFAULT NULL COMMENT '商户编号',\n" +

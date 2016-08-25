@@ -95,12 +95,17 @@ public class DaoMethod {
 
         }else {
            for( int i=0;i<attributes.size() ;i++){
+                System.out.println("public void set"+ attributes.get(i).getName()+"("+attributes.get(i).getType()+" "+attributes.get(i).getName()+"){");
+                System.out.println("param.put(\""+attributes.get(i).getName()+"\","+attributes.get(i).getName()+");");
+                System.out.println("}");
                 DaoAttribute attribute = attributes.get(i);
                 builder.append(attribute.getType()).append(whiteSpace).append(attribute.getName());
                 if(i != attributes.size()-1){
                     builder.append(",");
                 }
            }
+            String content = builder.toString().replace("class ","");
+            builder = new StringBuilder(content);
             builder.append("){").append(nextLine).append(whiteSpace);
             builder.append("Map<String,Object> param = new HashMap<String,Object>();").append(nextLine);
             for(DaoAttribute attribute:attributes){
@@ -124,5 +129,22 @@ public class DaoMethod {
             return "queryForList";
         }
         return "error";
+    }
+
+    public String generateMapClass(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("public class 参数类名字 {\r\n");
+        builder.append("private Map<String,Object> param = new HashMap<String,Object>() ;");
+        builder.append("public Map<String,Object> getParam(){\r\n return param ;\r\n }");
+
+        for(DaoAttribute attribute : attributes){
+            String name =attribute.getName();
+            builder.append("public void set"+name+"("+getClassType(attribute.getType())+" "+name+"){\r\n param.put(\""+name+"\","+name+");\r\n}\r\n");
+        }
+        return builder.toString();
+    }
+    private String getClassType(Class type){
+        String classType =type.getName().replace("class ","");
+        return classType;
     }
 }
