@@ -8,7 +8,7 @@ import java.util.List;
 public class Test {
     public static void main(String args[]){
         List<String> sqlContents = new ArrayList<String>();
-        //sql 两边多留点空格 符号两边也要有空格
+        //sql 两边多留点空格 符号两边也要有空格 ,如果sql是update 默认会更新updatetime
         sqlContents.add(" update  YS_FIN_NewMonthlyBill set discount = , origin_paid =  , actual_paid = , discount_amount = , updatetime = , updated_by = , status = , record_total_cnt = , record_needpaid_cnt = , record_onlinepay_cnt =  where shop_id = and bill_month = and bill_year =  ");
         List<String> ids = new ArrayList<String>();
         //对应每个sql的id

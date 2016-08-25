@@ -64,6 +64,7 @@ public class IbatisModel {
     }
     private String buildUpdate(SqlContent sqlContent){
         sqlContent.setIsNullJudge(true);
+        //判断 是否需要 <isNUll 标签判断
         if(sqlContent.getSetList().size()>4){
             sqlContent.setIsNullJudge(true);
         }
