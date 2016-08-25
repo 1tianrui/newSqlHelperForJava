@@ -105,9 +105,9 @@ public class DaoMethod {
             builder.append("Map<String,Object> param = new HashMap<String,Object>();").append(nextLine);
             for(DaoAttribute attribute:attributes){
                 builder.append(whiteSpace).append("param.put(\"").append(attribute.getName())
-                        .append("\",").append(attribute.getName()).append(";").append(nextLine);
+                        .append("\",").append(attribute.getName()).append(");").append(nextLine);
             }
-            builder.append(whiteSpace).append("return").append(whiteSpace).append("("+returnType+")").append(getSqlClientMethod()).append("\"")
+            builder.append(whiteSpace).append("return").append(whiteSpace).append("("+returnType+")").append(getSqlClientMethod()).append("(\"")
                     .append(sqlId).append("\",param);").append(nextLine);
             builder.append("}");
         }
