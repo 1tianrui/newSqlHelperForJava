@@ -69,11 +69,14 @@ public class IbatisModel {
         }
         StringBuilder builder = new StringBuilder() ;
         builder.append("\r\n<update id =\""+sqlContent.getId()+"\" parameterClass =\"map\">\r\n");
-        builder.append("UPDATE " + tableEntity.getTableName() + "  set \r\n");
+        builder.append("UPDATE " + tableEntity.getTableName() + "  set  updatetime = now() \r\n");
 
         List<Integer> setList = sqlContent.getSetList();
         if(sqlContent.isNullJudge()){
             for(int id : setList){
+                String name = tableEntity.getColumns().get(id).getName();
+                if(name.trim().equalsIgnoreCase("updatetime"))
+                    continue;
                 builder.append("<isNotNull prepend = \",\" property = \""+tableEntity.getColumns().get(id).getName()+"\"> "+tableEntity.getColumns().get(id).getName()+"= #"+javaEntity.getColumns().get(id).getName()+"#\n" +
                         "        </isNotNull>\r\n");
             }
