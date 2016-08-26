@@ -95,7 +95,7 @@ public class DaoMethod {
 
         }else {
            for( int i=0;i<attributes.size() ;i++){
-                System.out.println("public void set"+ attributes.get(i).getName()+"("+attributes.get(i).getType()+" "+attributes.get(i).getName()+"){");
+                System.out.println("public void set"+ attributes.get(i).getName()+"("+attributes.get(i).getType()+" "+attributes.get(i).getName()+")throws SQLException{");
                 System.out.println("param.put(\""+attributes.get(i).getName()+"\","+attributes.get(i).getName()+");");
                 System.out.println("}");
                 DaoAttribute attribute = attributes.get(i);
@@ -112,8 +112,11 @@ public class DaoMethod {
                 builder.append(whiteSpace).append("param.put(\"").append(attribute.getName())
                         .append("\",").append(attribute.getName()).append(");").append(nextLine);
             }
+            if(methodType != SqlContent.UPDATE)
             builder.append(whiteSpace).append("return").append(whiteSpace).append("("+returnType+")").append(getSqlClientMethod()).append("(\"")
                     .append(sqlId).append("\",param);").append(nextLine);
+            else
+            builder.append("return update(\""+sqlId+"\",param) > 0 \r\n");
             builder.append("}");
         }
         return builder.toString();
