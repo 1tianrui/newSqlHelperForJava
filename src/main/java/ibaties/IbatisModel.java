@@ -78,7 +78,7 @@ public class IbatisModel {
                 String name = tableEntity.getColumns().get(id).getName();
                 if(name.trim().equalsIgnoreCase("updatetime"))
                     continue;
-                builder.append("<isNotNull prepend = \",\" property = \""+tableEntity.getColumns().get(id).getName()+"\"> "+tableEntity.getColumns().get(id).getName()+"= #"+javaEntity.getColumns().get(id).getName()+"#\n" +
+                builder.append("<isNotNull prepend = \",\" property = \""+javaEntity.getColumns().get(id).getName()+"\">\r\n "+tableEntity.getColumns().get(id).getName()+"= #"+javaEntity.getColumns().get(id).getName()+"#\n" +
                         "        </isNotNull>\r\n");
             }
         }else{
