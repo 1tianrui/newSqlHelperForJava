@@ -164,7 +164,8 @@ public class IbatisModel {
                     builder.append("AND    ");
                 }
                 int index =  inListIndexes.get(i);
-                builder.append("<iterate propertry=\""+classColumns.get(index).getName()+"List"+"\""+" open=\"(\" close=\")\" conjunction=\",\">"
+                builder.append("\r\n"+classColumns.get(index).getName()+"  in");
+                builder.append("\r\n<iterate propertry=\""+classColumns.get(index).getName()+"List"+"\""+" open=\"(\" close=\")\" conjunction=\",\">"
                         +"#"+tableColumns.get(index).getName()+"List[]#"+
                         "</iterate>"+"\r\n");
             }

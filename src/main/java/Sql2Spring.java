@@ -28,7 +28,7 @@ public class Sql2Spring {
             javaContent = javaEntity.getJavaContent();
             DaoClass daoClass =  generator.generator(sqlContents, javaEntity, tableEntity);
 
-           System.out.println(daoClass.toString());
+           System.out.println(mapperContent);
 
         }catch (Exception e ){
             System.out.println(e.getMessage());
