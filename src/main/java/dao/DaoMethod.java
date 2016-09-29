@@ -88,8 +88,11 @@ public class DaoMethod {
                 .append(whiteSpace).append(methodName).append("(");
         if(attributes == null || attributes.size() == 0){
             //默认是insert方法
+            String tmpReturnType = returnType ;
+            if(returnType.equalsIgnoreCase("int"))
+                tmpReturnType ="Integer";
             builder.append("PO类型 po){").append(nextLine).append(whiteSpace)
-                    .append("return").append(whiteSpace).append("(").append(returnType+")").append(getSqlClientMethod()).append("(\"")
+                    .append("return").append(whiteSpace).append("(").append(tmpReturnType+")").append(getSqlClientMethod()).append("(\"")
             .append(sqlId).append("\",").append("po);").append(nextLine).append("  }");
             return builder.toString();
 
